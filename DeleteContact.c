@@ -4,12 +4,7 @@ Status delete_contact(AddressBook *address_book)
     char phoneInput[32] = ""; 
     char emailInput[32] = "";
 
-    ContactInfo *ptr;
-    system("cls");
     int option, siNo;
-
-    option = get_option(NUM, "");
-
 
     menu_header("Search contact to Delete by: \n"); 
     printf("0. Back\n");
@@ -28,40 +23,42 @@ Status delete_contact(AddressBook *address_book)
 
      switch(option){
         case 0:
-        scanf("%d", &option);
-        if(option == 0){
-        main_menu();
-        }
-        break;
+            menu(address_book);
+               break;
         case 1:
-        printf("Enter the Name: ",&nameInput);
-        scanf("%s", nameInput);
-        size_t i = 0;
-        for(; i < address_book->count; i++){
-            if(strcmp(address_book->list[i].name[0], nameInput)){
-                free(address_book->list);
-                address_book->count--;
+            printf("Enter the Name: ");
+            scanf("%s", nameInput);
+
+            for(int i = 0; i <= address_book->count; i++){
+                if(strcmp(address_book->list[i].name[0], nameInput) == 0){
+                    printf("%d", i);
+                    for(int j = i; j <= address_book->count ; j++){
+
+                        address_book->list[j] = address_book->list[j+1];
+                    }
+                }
+                
             }
-        }
-
-        break;
+            address_book->count--;
+            //find name and delete it 
+            break;
         case 2:
-        printf("Enter the Phone No: ",&phoneInput);
-        scanf("%s", phoneInput);
-        //find phone number and delete it 
-        break;
+            printf("Enter the Phone No: ",&phoneInput);
+            scanf("%s", phoneInput);
+            //find phone number and delete it 
+            break;
         case 3:
-        printf("Enter the Email ID: ",&emailInput);
-        scanf("%s", emailInput);
-        //find email and delete it 
-        break;
+            printf("Enter the Email ID: ",&emailInput);
+            scanf("%s", emailInput);
+            //find email and delete it 
+            break;
         case 4:
-        printf("Enter the Serial Number: ", &siNo);
-        scanf("%d", siNo);
-        //find siNo and delete it 
-        break;
-
+            printf("Enter the Serial Number: ", &siNo);
+            scanf("%d", siNo);
+            //find siNo and delete it 
+            break;
+        
 
         }
     return e_success;
-} 
+}
