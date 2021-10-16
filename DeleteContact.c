@@ -37,7 +37,7 @@ Status delete_contact(AddressBook *address_book)
                         address_book->list[j] = address_book->list[j+1];
                     }
                 }
-                
+
             }
             address_book->count--;
             //find name and delete it 
@@ -57,7 +57,7 @@ Status delete_contact(AddressBook *address_book)
             scanf("%d", siNo);
             //find siNo and delete it 
             break;
-        
+
 
         }
     return e_success;
